@@ -23,9 +23,7 @@ export default class CalculateEligibilityScoreUseCase {
     this.AddWritingScore();
     this.AddReferralCode();
 
-    this.GetElegibleProjects();
-
-    return this.score;
+    return this.GetElegibleProjects();
   }
 
   private GetElegibleProjects() {
@@ -33,7 +31,20 @@ export default class CalculateEligibilityScoreUseCase {
       this.IsElegibleProject(p)
     )[0];
 
-    return selectedProject;
+    const elegibleProjects = this._Projects.filter((p) =>
+      this.IsElegibleProject(p)
+    );
+
+    const ineligibleProjects = this._Projects.filter(
+      (p) => !this.IsElegibleProject(p)
+    );
+
+    return {
+      score: this.score,
+      selected_project: selectedProject,
+      eligible_projects: elegibleProjects,
+      ineligible_projects: ineligibleProjects,
+    };
   }
 
   private AddEducationLevelScore() {
