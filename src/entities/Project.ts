@@ -2,11 +2,11 @@ import IProject from "interfaces/IProject";
 
 export default class Project implements IProject {
   private _name: string;
-  private _ElegibleScore: number;
+  private _elegibleScore: number;
 
   constructor(name: string, elegibleScore: number) {
     this._name = name;
-    this._ElegibleScore = elegibleScore;
+    this._elegibleScore = elegibleScore;
   }
 
   get name() {
@@ -14,6 +14,6 @@ export default class Project implements IProject {
   }
 
   get elegibleScore() {
-    return this._ElegibleScore;
+    return this._elegibleScore;
   }
 }

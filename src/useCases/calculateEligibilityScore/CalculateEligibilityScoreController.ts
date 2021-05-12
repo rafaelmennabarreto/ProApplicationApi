@@ -5,7 +5,7 @@ import CalculateEligibilityScoreDtoValidator from "./validators/CalculateEligibi
 
 export default class CalculateEligibilityScoreController {
   constructor(
-    private _CalculateEligibilityUseCase: CalculateEligibilityScoreUseCase
+    private _calculateEligibilityUseCase: CalculateEligibilityScoreUseCase
   ) {}
 
   Handle(request: Request, response: Response) {
@@ -14,7 +14,7 @@ export default class CalculateEligibilityScoreController {
 
       new CalculateEligibilityScoreDtoValidator(data).validate();
 
-      const responseData = this._CalculateEligibilityUseCase.Execute(data);
+      const responseData = this._calculateEligibilityUseCase.Execute(data);
 
       response.status(200).send(responseData);
     } catch (e) {

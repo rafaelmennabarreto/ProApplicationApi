@@ -18,7 +18,7 @@ export default class CalculateEligibilityScoreUseCase {
       this.AddExperienceScore(calculateEligibilityScoreDto) +
       this.AddInternetScore(calculateEligibilityScoreDto) +
       this.AddWritingScore(calculateEligibilityScoreDto) +
-      this.AddReferralCode(calculateEligibilityScoreDto);
+      this.AddReferralCodeScore(calculateEligibilityScoreDto);
 
     return this.GetElegibleProjects(Projects, proScore);
   }
@@ -79,12 +79,13 @@ export default class CalculateEligibilityScoreUseCase {
     return new WriteScore(writing_score).score;
   }
 
-  private AddReferralCode(
+  private AddReferralCodeScore(
     calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
   ) {
     const { referral_code } = calculateEligibilityScoreDto;
 
     if (referral_code === "token1234") return 1;
+
     return 0;
   }
 
