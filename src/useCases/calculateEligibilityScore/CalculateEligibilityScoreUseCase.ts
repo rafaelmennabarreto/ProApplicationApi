@@ -1,5 +1,6 @@
-import IProject from "interfaces/IProject";
-import UnderAgeError from "useCases/common/errors/UnderAgeError";
+import IProject from "@src/interfaces/IProject";
+import { Projects } from "@src/mock/Projects";
+import UnderAgeError from "../common/errors/UnderAgeError";
 import ICalculateEligibilityScoreDto from "./dtos/ICalculateEligibilityScoreDto";
 import EducationLevel from "./vo/EducationLevel";
 import InternetSpeed from "./vo/InternetSpeed";
@@ -9,33 +10,28 @@ import WriteScore from "./vo/WriteScore";
 export default class CalculateEligibilityScoreUseCase {
   private score = 0;
 
-  constructor(
-    private _CalculateEligibilityScoreDto: ICalculateEligibilityScoreDto,
-    private _Projects: IProject[]
-  ) {}
+  constructor() {}
 
-  Execute() {
-    if (this._CalculateEligibilityScoreDto.age < 18) throw new UnderAgeError();
+  Execute(calculateEligibilityScoreDto: ICalculateEligibilityScoreDto) {
+    if (calculateEligibilityScoreDto.age < 18) throw new UnderAgeError();
 
-    this.AddEducationLevelScore();
-    this.AddExperienceScore();
-    this.AddInternetScore();
-    this.AddWritingScore();
-    this.AddReferralCode();
+    this.AddEducationLevelScore(calculateEligibilityScoreDto);
+    this.AddExperienceScore(calculateEligibilityScoreDto);
+    this.AddInternetScore(calculateEligibilityScoreDto);
+    this.AddWritingScore(calculateEligibilityScoreDto);
+    this.AddReferralCode(calculateEligibilityScoreDto);
 
-    return this.GetElegibleProjects();
+    return this.GetElegibleProjects(Projects);
   }
 
-  private GetElegibleProjects() {
-    const selectedProject = this._Projects.filter((p) =>
+  private GetElegibleProjects(projects: IProject[]) {
+    const selectedProject = projects.filter((p) =>
       this.IsElegibleProject(p)
     )[0];
 
-    const elegibleProjects = this._Projects.filter((p) =>
-      this.IsElegibleProject(p)
-    );
+    const elegibleProjects = projects.filter((p) => this.IsElegibleProject(p));
 
-    const ineligibleProjects = this._Projects.filter(
+    const ineligibleProjects = projects.filter(
       (p) => !this.IsElegibleProject(p)
     );
 
@@ -47,37 +43,45 @@ export default class CalculateEligibilityScoreUseCase {
     };
   }
 
-  private AddEducationLevelScore() {
-    const educationLevel = this._CalculateEligibilityScoreDto.education_level;
-    this.score += new EducationLevel(educationLevel).score;
+  private AddEducationLevelScore(
+    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+  ) {
+    const { education_level } = calculateEligibilityScoreDto;
+
+    this.score += new EducationLevel(education_level).score;
   }
 
-  private AddExperienceScore() {
-    const {
-      sales,
-      support,
-    } = this._CalculateEligibilityScoreDto.past_experiences;
+  private AddExperienceScore(
+    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+  ) {
+    const { sales, support } = calculateEligibilityScoreDto.past_experiences;
 
     this.score += new PastExperience(sales, support).score;
   }
 
-  private AddInternetScore() {
+  private AddInternetScore(
+    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+  ) {
     const {
       download_speed,
       upload_speed,
-    } = this._CalculateEligibilityScoreDto.internet_test;
+    } = calculateEligibilityScoreDto.internet_test;
 
     this.score += new InternetSpeed(download_speed, upload_speed).score;
   }
 
-  private AddWritingScore() {
-    const { writing_score } = this._CalculateEligibilityScoreDto;
+  private AddWritingScore(
+    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+  ) {
+    const { writing_score } = calculateEligibilityScoreDto;
 
     this.score += new WriteScore(writing_score).score;
   }
 
-  private AddReferralCode() {
-    const { referral_code } = this._CalculateEligibilityScoreDto;
+  private AddReferralCode(
+    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+  ) {
+    const { referral_code } = calculateEligibilityScoreDto;
 
     if (referral_code === "token1234") this.score += 1;
   }
