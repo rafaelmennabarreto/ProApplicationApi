@@ -10,5 +10,9 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "import/extensions": "off"
+    "import/no-unresolved": "off"
+    "camelcase": { "properties": "never" }
+  }
 }
