@@ -1,4 +1,4 @@
-import InvalidValueErrorRange from "useCases/common/errors/InvalidValueRangeError";
+import InvalidValueErrorRange from "@src/useCases/common/errors/InvalidValueRangeError";
 
 export default class WriteScore {
   private _value: number;
