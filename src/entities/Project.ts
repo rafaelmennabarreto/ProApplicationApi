@@ -1,4 +1,4 @@
-import IProject from "interfaces/IProject";
+import IProject from "@src/interfaces/IProject";
 
 export default class Project implements IProject {
   private _name: string;
