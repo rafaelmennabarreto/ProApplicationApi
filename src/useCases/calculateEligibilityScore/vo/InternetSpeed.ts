@@ -16,7 +16,7 @@ export default class InternetSpeed {
 
   private CalculateScore(speed: number) {
     if (speed > 50) return 1;
-
-    return -1;
+    if (speed < 5) return -1;
+    return 0;
   }
 }
