@@ -5,7 +5,8 @@
   "author": "Rafael Barreto",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/app.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/app.ts",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.23",
     "@types/morgan": "^1.9.2",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
@@ -20,6 +22,8 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
     "ts-node-dev": "^1.1.6",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.4"
