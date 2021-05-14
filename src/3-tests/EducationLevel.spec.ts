@@ -1,4 +1,4 @@
-import EducationLevel from "../vo/EducationLevel";
+import EducationLevel from "@src/2-domain/vo/EducationLevel";
 
 test("It should return 0", () => {
   const educationLevel = new EducationLevel("no_education");

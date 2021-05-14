@@ -1,6 +1,6 @@
-import InvalidValueErrorRange from "@src/useCases/common/errors/InvalidValueRangeError";
+import InvalidValueErrorRange from "../errors/InvalidValueRangeError";
 
-export default class WriteScore {
+export default class WritingScore {
   private _value: number;
 
   constructor(writeScore: number) {

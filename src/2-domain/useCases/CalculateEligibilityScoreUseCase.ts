@@ -1,16 +1,16 @@
-import IProject from "@src/interfaces/IProject";
-import { Projects } from "@src/mock/Projects";
-import UnderAgeError from "../common/errors/UnderAgeError";
-import ICalculateEligibilityScoreDto from "./dtos/ICalculateEligibilityScoreDto";
-import EducationLevel from "./vo/EducationLevel";
-import InternetSpeed from "./vo/InternetSpeed";
-import PastExperience from "./vo/PastExperience";
-import WriteScore from "./vo/WriteScore";
+import { ProjectsMock } from "@src/4-mocks/Projects";
+import CalculateEligibilityScoreDto from "../dtos/CalculateEligibilityScoreDto";
+import UnderAgeError from "../errors/UnderAgeError";
+import IProject from "../interfaces/IProject";
+import EducationLevel from "../vo/EducationLevel";
+import InternetSpeed from "../vo/InternetSpeed";
+import PastExperience from "../vo/PastExperience";
+import WritingScore from "../vo/WritingScore";
 
 export default class CalculateEligibilityScoreUseCase {
   constructor() {}
 
-  Execute(calculateEligibilityScoreDto: ICalculateEligibilityScoreDto) {
+  Execute(calculateEligibilityScoreDto: CalculateEligibilityScoreDto) {
     if (calculateEligibilityScoreDto.age < 18) throw new UnderAgeError();
 
     const proScore =
@@ -20,7 +20,7 @@ export default class CalculateEligibilityScoreUseCase {
       this.AddWritingScore(calculateEligibilityScoreDto) +
       this.AddReferralCodeScore(calculateEligibilityScoreDto);
 
-    return this.GetElegibleProjects(Projects, proScore);
+    return this.GetElegibleProjects(ProjectsMock, proScore);
   }
 
   private GetElegibleProjects(projects: IProject[], proScore: number) {
@@ -45,7 +45,7 @@ export default class CalculateEligibilityScoreUseCase {
   }
 
   private AddEducationLevelScore(
-    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {
     const { education_level } = calculateEligibilityScoreDto;
 
@@ -53,7 +53,7 @@ export default class CalculateEligibilityScoreUseCase {
   }
 
   private AddExperienceScore(
-    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {
     const { sales, support } = calculateEligibilityScoreDto.past_experiences;
 
@@ -61,7 +61,7 @@ export default class CalculateEligibilityScoreUseCase {
   }
 
   private AddInternetScore(
-    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {
     const {
       download_speed,
@@ -72,15 +72,15 @@ export default class CalculateEligibilityScoreUseCase {
   }
 
   private AddWritingScore(
-    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {
     const { writing_score } = calculateEligibilityScoreDto;
 
-    return new WriteScore(writing_score).score;
+    return new WritingScore(writing_score).score;
   }
 
   private AddReferralCodeScore(
-    calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {
     const { referral_code } = calculateEligibilityScoreDto;
 

@@ -1,4 +1,4 @@
-import PastExperience from "../vo/PastExperience";
+import PastExperience from "@src/2-domain/vo/PastExperience";
 
 test("It should be return 8", () => {
   const pastExperience = new PastExperience(true, true);

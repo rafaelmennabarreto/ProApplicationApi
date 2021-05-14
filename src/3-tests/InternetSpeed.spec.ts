@@ -1,4 +1,4 @@
-import InternetSpeed from "../vo/InternetSpeed";
+import InternetSpeed from "@src/2-domain/vo/InternetSpeed";
 
 test("It should be return 0", () => {
   const internetSpeed = new InternetSpeed(40, 35);

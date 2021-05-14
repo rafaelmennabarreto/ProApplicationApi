@@ -1,7 +1,7 @@
+import CalculateEligibilityScoreDto from "@src/2-domain/dtos/CalculateEligibilityScoreDto";
+import CalculateEligibilityScoreUseCase from "@src/2-domain/useCases/CalculateEligibilityScoreUseCase";
+import CalculateEligibilityScoreDtoValidator from "@src/2-domain/validators/CalculateEligibilityScoreDtoValidator";
 import { Request, Response } from "express";
-import CalculateEligibilityScoreUseCase from "./CalculateEligibilityScoreUseCase";
-import ICalculateEligibilityScoreDto from "./dtos/ICalculateEligibilityScoreDto";
-import CalculateEligibilityScoreDtoValidator from "./validators/CalculateEligibilityScoreDtoValidator";
 
 export default class CalculateEligibilityScoreController {
   constructor(
@@ -10,7 +10,7 @@ export default class CalculateEligibilityScoreController {
 
   Handle(request: Request, response: Response) {
     try {
-      const data: ICalculateEligibilityScoreDto = request.body;
+      const data: CalculateEligibilityScoreDto = request.body;
 
       new CalculateEligibilityScoreDtoValidator(data).validate();
 

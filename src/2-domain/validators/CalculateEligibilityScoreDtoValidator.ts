@@ -1,10 +1,10 @@
-import ICalculateEligibilityScoreDto from "../dtos/ICalculateEligibilityScoreDto";
+import CalculateEligibilityScoreDto from "../dtos/CalculateEligibilityScoreDto";
 
 export default class CalculateEligibilityScoreDtoValidator {
   private _errorMessages = new Array<string>();
 
   constructor(
-    private calculateEligibilityScoreDto: ICalculateEligibilityScoreDto
+    private calculateEligibilityScoreDto: CalculateEligibilityScoreDto
   ) {}
 
   validate() {
@@ -13,8 +13,6 @@ export default class CalculateEligibilityScoreDtoValidator {
     this.validateEducationLevel();
     this.validatePastExperiences();
     this.validateInternetTest();
-
-    console.log(this.calculateEligibilityScoreDto);
 
     if (this._errorMessages.length > 0) {
       const message =

@@ -1,7 +1,7 @@
-import InvalidValueErrorRange from "@src/useCases/common/errors/InvalidValueRangeError";
-import UnderAgeError from "@src/useCases/common/errors/UnderAgeError";
-import CalculateEligibilityScoreUseCase from "../CalculateEligibilityScoreUseCase";
-import data from './data.json';
+import InvalidValueErrorRange from "@src/2-domain/errors/InvalidValueRangeError";
+import UnderAgeError from "@src/2-domain/errors/UnderAgeError";
+import CalculateEligibilityScoreUseCase from "@src/2-domain/useCases/CalculateEligibilityScoreUseCase";
+import data from "./data.json";
 
 const mainData = data.request;
 const responseData = data.response;
