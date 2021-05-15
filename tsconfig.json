@@ -1,16 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es5",
     "module": "commonjs",
     "strict": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowJs": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["./src/**/*.ts"],
+  "plugins": [
+    {
+      "transform": "@zerollup/ts-transform-paths",
+      "afterDeclarations": true
+    }
+  ]
 }
