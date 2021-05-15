@@ -16,19 +16,19 @@ For develop this application I started using the package by feature folder struc
 
 ## Run Application in development mode
 
-1 - clone this repository
-2 - open the project folder and run yarn or npm install
-3 - in the project folded run command yarn or npm dev
-4 - the server will be started in port 3000
+  1. clone this repository
+  2. open the project folder and run yarn or npm install
+  3. in the project folded run command yarn or npm dev
+  4. the server will be started in port 3000
 
 ## Run Tests
 
-1 - open the project folder and run yarn or npm install
-2 - in the project folded run command yarn or npm test
-3 - wait test conclusion to see report
+  1. open the project folder and run yarn or npm install
+  2. in the project folded run command yarn or npm test
+  3. wait test conclusion to see report
 
 ## Generate Build
 
-1 - open the project folder and run yarn or npm install
-2 - in the project folded run command yarn or npm build
-3 - the build was generated into the dist folder.
+  1. open the project folder and run yarn or npm install
+  2. in the project folded run command yarn or npm build
+  3. the build was generated into the dist folder.
